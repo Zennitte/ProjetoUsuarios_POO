@@ -9,6 +9,8 @@ namespace ProjetoProdutos_POO.Classes
         Usuario novoUsuario = new Usuario();
         Marca novaMarca = new Marca();
         Produto novoProduto = new Produto();
+        Usuario usuarioEncontrado;
+
         public Login()
         {
             bool checar = true;
@@ -53,7 +55,7 @@ Olá! O que deseja fazer?
                             Console.WriteLine("Digite sua senha: ");
                             string senhaLogar = Console.ReadLine();
 
-                            Usuario usuarioEncontrado = novoUsuario.usuarios.Find(x => x.Email == emailLogar && x.Senha == senhaLogar);
+                            usuarioEncontrado = novoUsuario.usuarios.Find(x => x.Email == emailLogar && x.Senha == senhaLogar);
 
                             if (usuarioEncontrado != null)
                             {
@@ -144,11 +146,20 @@ Olá! O que deseja fazer?
                             Console.WriteLine("Digite o preço do produto");
                             float _preco = float.Parse(Console.ReadLine());
 
-                            // Console.WriteLine("Digite a marca do produto");
-                            // Marca _marca = novaMarca.ListaMarcas.Find(x => x.n)
+                            Console.WriteLine("Escolha uma das marcas a seguir e digite o nome da marca escolhida");
+                            foreach (var item in novaMarca.ListaMarcas)
+                            {
+                                Console.WriteLine($"Nome: {item.NomeMarca}");
+                            }
+                            string marcaEscolhida = Console.ReadLine();
 
+                            Marca _marca = novaMarca.ListaMarcas.Find(x => x.NomeMarca == marcaEscolhida);
 
+                            Usuario _cadastradoPor = usuarioEncontrado;
 
+                            Produto p1 = new Produto(_codigo, _nomeProduto, _preco, _marca, _cadastradoPor);
+
+                            Console.WriteLine(novoProduto.Cadastrar(p1));
                         }
                         else
                         {
@@ -161,10 +172,23 @@ Olá! O que deseja fazer?
                             Console.WriteLine("Qual produto você quer deletar?");
                             string _nomeProduto = Console.ReadLine();
 
-                            // Produto produtoEncontrado = novoProduto.ListaProdutos.fi
+                            Produto produtoEncontrado = novoProduto.ListaProdutos.Find(x => x.NomeProduto == _nomeProduto);
+
+                            Console.WriteLine(novoProduto.Deletar(produtoEncontrado));
+                        }
+                        else
+                        {
+                            Console.WriteLine("Você precisa estar logado para realizar essa ação");
                         }
                         break;
                     case 9:
+                        if (Logado)
+                        {
+                            foreach (var item in novoProduto.ListaProdutos)
+                            {
+                                Console.WriteLine($"Nome: {item.NomeProduto} / Código: {item.Codigo} / Preço: {item.Preco} / Marca {item.Marca} / Cadastrado Por: {item.CadastradoPor}");
+                            }
+                        }
                         break;
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;
