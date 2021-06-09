@@ -18,8 +18,14 @@ namespace ProjetoProdutos_POO.Classes
                 Console.WriteLine(@"
 Olá! O que deseja fazer?
 1 - Cadastrar usuário
-2 - Fazer o Login 
+2 - Fazer Login 
 3 - Deslogar
+4 - Cadastrar marca
+5 - Listar marcas
+6 - Deletar marca
+7 - Cadastrar Produto
+8 - Listar Produtos
+9 - Deletar produto
 0 - Sair");
                 select = int.Parse(Console.ReadLine());
 
@@ -74,6 +80,24 @@ Olá! O que deseja fazer?
                             }
                         } while (checar == true);
                         checar = true;
+                        break;
+                    case 4:
+                        
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        break;
+                    case 7:
+                        break;
+                    case 8:
+                        break;
+                    case 9:
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Opção inválida");
+                        Console.ForegroundColor = ConsoleColor.White;
                         break;
                 }
             } while (select != 0);
