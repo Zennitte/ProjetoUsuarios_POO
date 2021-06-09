@@ -28,7 +28,7 @@ namespace ProjetoProdutos_POO.Classes
 
         public string Deletar(Marca marca)
         {
-            ListaMarcas.RemoveAll(x => x.NomeMarca == marca.NomeMarca);
+            ListaMarcas.Remove(marca);
             return "Marca Removida";
         }
 
