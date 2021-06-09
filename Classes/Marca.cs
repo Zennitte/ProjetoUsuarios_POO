@@ -6,16 +6,17 @@ namespace ProjetoProdutos_POO.Classes
 {
     public class Marca : IMarca
     {
-        private int Codigo { get; set; }
-        private string NomeMarca { get; set; }
-        private DateTime DataCadastro { get; set; }    
+        public int Codigo { get; set; }
+        public string NomeMarca { get; set; }
+        public DateTime DataCadastro { get; set; }    
         List<Marca> ListaMarcas = new List<Marca>();
         public Marca()
         {
 
         }
-        public Marca(string _nomeMarca)
+        public Marca(int _codigo,string _nomeMarca)
         {
+            this.Codigo = _codigo;
             NomeMarca = _nomeMarca;
             DataCadastro = DateTime.Now;            
         }
