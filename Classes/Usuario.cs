@@ -6,12 +6,12 @@ namespace ProjetoProdutos_POO.Classes
 {
     public class Usuario : IUsuario
     {
-        private int Codigo;
-        private string Nome;
-        private string Email;
-        private string Senha;
-        private DateTime DataCadastro;
-        List<Usuario> usuarios = new List<Usuario>();
+        public int Codigo;
+        public string Nome;
+        public string Email;
+        public string Senha;
+        public DateTime DataCadastro;
+        public List<Usuario> usuarios = new List<Usuario>();
         public Usuario()
         {
 
