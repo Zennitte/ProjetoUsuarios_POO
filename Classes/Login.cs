@@ -1,13 +1,17 @@
 using System;
+using ProjetoProdutos_POO.Interfaces;
 
 namespace ProjetoProdutos_POO.Classes
 {
-    public class Login
+    public class Login : ILogin
     {
-        private bool Logado;
-        Usuario usuario = new Usuario();
+        public bool Logado { get; set; }
+        Usuario novoUsuario = new Usuario();
         public Login()
         {
+            bool checar = true;
+            int codigoU = 0;
+            int select;
             do
             {
 
@@ -15,49 +19,82 @@ namespace ProjetoProdutos_POO.Classes
 Olá! O que deseja fazer?
 1 - Cadastrar usuário
 2 - Fazer o Login 
-3 - Sair");
-                string select = Console.ReadLine();
+3 - Deslogar
+0 - Sair");
+                select = int.Parse(Console.ReadLine());
 
                 switch (select)
                 {
-                    case "1":
+                    case 1:
                         Console.WriteLine("Digite seu nome: ");
-                        string nomeCadastro = Console.ReadLine();
-                        Console.WriteLine("Digite seu código: ");
-                        int codigoCadastro = int.Parse(Console.ReadLine());
+                        string nomeU = Console.ReadLine().ToLower();
+                        codigoU += 1;
                         Console.WriteLine("Digite seu email: ");
-                        string emailCadastro = Console.ReadLine();
+                        string emailU = Console.ReadLine().ToLower();
                         Console.WriteLine("Digite sua senha: ");
-                        string senhaCadastro = Console.ReadLine();
-                        Usuario usuario1 = new Usuario(codigoCadastro, nomeCadastro, emailCadastro, senhaCadastro);
-                        usuario.Cadastrar(usuario1);
+                        string senhaU = Console.ReadLine();
+                        Usuario usuario1 = new Usuario(codigoU, nomeU, emailU, senhaU);
+                        // novoUsuario.Cadastrar(usuario1);
+                        Console.WriteLine(novoUsuario.Cadastrar(usuario1));
                         break;
-                    case "2":
-                        Logar();
+                    case 2:
+                        do
+                        {
+                            Console.WriteLine("Digite seu email: ");
+                            string emailLogar = Console.ReadLine().ToLower();
+                            Console.WriteLine("Digite sua senha: ");
+                            string senhaLogar = Console.ReadLine();
+                            if (novoUsuario.usuarios.Find(x => x.Email == emailLogar).Senha == senhaLogar)
+                            {
+                                Console.WriteLine(Logar(novoUsuario));
+                                checar = false;
+                            }
+                            else
+                            {
+                                Console.WriteLine("O email ou a senha estão incorretos");
+                            }
+                        } while (checar == true);
+                        checar = true;
+                        break;
+                    case 3:
+                        do
+                        {
+                            Console.WriteLine("Digite seu email para deslogar: ");
+                            string emailDeslogar = Console.ReadLine().ToLower();
+                            Console.WriteLine("Digite sua senha para deslogar: ");
+                            string senhaDeslogar = Console.ReadLine();
+                            if (novoUsuario.usuarios.Find(x => x.Email == emailDeslogar).Senha == senhaDeslogar)
+                            {
+                                Console.WriteLine(Deslogar(novoUsuario));
+                                checar = false;
+                            }
+                            else
+                            {
+                                Console.WriteLine("O email ou a senha estão incorretos");
+                            }
+                        } while (checar == true);
+                        checar = true;
                         break;
                 }
-            } while (Logado == true);
+            } while (select != 0);
         }
-        public string Logar()
+        public string Logar(Usuario usuario)
         {
-            Console.WriteLine("Digite seu email: ");
-            string emailLogar = Console.ReadLine();
-            Console.WriteLine("Digite sua senha: ");
-            string senhaLogar = Console.ReadLine();
-            if (usuario.usuarios.Find(x => x.Email == emailLogar).Senha == senhaLogar)
+            if (Logado == false)
             {
-                
+                Logado = true;
+                return ("Você foi logado");
             }
-            else
-            {
-                Console.WriteLine("O email ou a senha estão incorretos");
-            }
-            return "Você foi Logado!";
+            return ("Você já está logado!");
         }
         public string Deslogar(Usuario usuario)
         {
-            
-            return "Você foi deslogado!";
+            if (Logado == true)
+            {
+                Logado = false;
+                return ("Você foi deslogado");
+            }
+            return ("Você já está deslogado!");
         }
     }
 }
