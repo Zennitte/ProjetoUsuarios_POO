@@ -9,7 +9,7 @@ namespace ProjetoProdutos_POO.Classes
         public int Codigo { get; set; }
         public string NomeMarca { get; set; }
         public DateTime DataCadastro { get; set; }    
-        List<Marca> ListaMarcas = new List<Marca>();
+        public List<Marca> ListaMarcas = new List<Marca>();
         public Marca()
         {
 
