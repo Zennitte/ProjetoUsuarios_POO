@@ -8,6 +8,7 @@ namespace ProjetoProdutos_POO.Classes
         public bool Logado { get; set; }
         Usuario novoUsuario = new Usuario();
         Marca novaMarca = new Marca();
+        Produto novoProduto = new Produto();
         public Login()
         {
             bool checar = true;
@@ -108,8 +109,12 @@ Olá! O que deseja fazer?
                         {
                             foreach (var item in novaMarca.ListaMarcas)
                             {
-                                Console.Write($"Nome: {novaMarca.NomeMarca}, Código: {novaMarca.Codigo}");
+                                Console.WriteLine($"Nome: {item.NomeMarca} / Código: {item.Codigo}");
                             }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Você precisa estar logado para realizar essa ação");
                         }
                         break;
                     case 6:
@@ -118,12 +123,46 @@ Olá! O que deseja fazer?
                             Console.WriteLine("Digite o nome da marca que o quer deletar");
                             string _nomeMarca = Console.ReadLine();
 
-                            // novaMarca.Deletar(_nomeMarca)
+                            Marca marcaEncontrada = novaMarca.ListaMarcas.Find(x => x.NomeMarca == _nomeMarca);
+
+                            Console.WriteLine(novaMarca.Deletar(marcaEncontrada));
+                        }
+                        else
+                        {
+                            Console.WriteLine("Você precisa estar logado para realizar essa ação");
                         }
                         break;
                     case 7:
+                        if (Logado)
+                        {
+                            Console.WriteLine("Digite o código do produto");
+                            int _codigo = int.Parse(Console.ReadLine());
+
+                            Console.WriteLine("Digite o nome do produto");
+                            string _nomeProduto = Console.ReadLine();
+
+                            Console.WriteLine("Digite o preço do produto");
+                            float _preco = float.Parse(Console.ReadLine());
+
+                            // Console.WriteLine("Digite a marca do produto");
+                            // Marca _marca = novaMarca.ListaMarcas.Find(x => x.n)
+
+
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Você precisa estar logado para realizar essa ação");
+                        }
                         break;
                     case 8:
+                        if (Logado)
+                        {
+                            Console.WriteLine("Qual produto você quer deletar?");
+                            string _nomeProduto = Console.ReadLine();
+
+                            // Produto produtoEncontrado = novoProduto.ListaProdutos.fi
+                        }
                         break;
                     case 9:
                         break;
