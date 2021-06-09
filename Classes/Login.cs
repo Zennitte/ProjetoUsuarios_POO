@@ -51,7 +51,10 @@ Olá! O que deseja fazer?
                             string emailLogar = Console.ReadLine().ToLower();
                             Console.WriteLine("Digite sua senha: ");
                             string senhaLogar = Console.ReadLine();
-                            if (novoUsuario.usuarios.Find(x => x.Email == emailLogar).Senha == senhaLogar)
+
+                            Usuario usuarioEncontrado = novoUsuario.usuarios.Find(x => x.Email == emailLogar && x.Senha == senhaLogar);
+
+                            if (usuarioEncontrado != null)
                             {
                                 Console.WriteLine(Logar(novoUsuario));
                                 checar = false;
@@ -101,15 +104,22 @@ Olá! O que deseja fazer?
                         }
                         break;
                     case 5:
-                    if (Logado)
-                    {
-                        // foreach (var marca in ListaMarcas)
-                        // {
-                            
-                        // }
-                    }
+                        if (Logado)
+                        {
+                            foreach (var item in novaMarca.ListaMarcas)
+                            {
+                                Console.Write($"Nome: {novaMarca.NomeMarca}, Código: {novaMarca.Codigo}");
+                            }
+                        }
                         break;
                     case 6:
+                        if (Logado)
+                        {
+                            Console.WriteLine("Digite o nome da marca que o quer deletar");
+                            string _nomeMarca = Console.ReadLine();
+
+                            // novaMarca.Deletar(_nomeMarca)
+                        }
                         break;
                     case 7:
                         break;
