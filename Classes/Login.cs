@@ -7,6 +7,7 @@ namespace ProjetoProdutos_POO.Classes
     {
         public bool Logado { get; set; }
         Usuario novoUsuario = new Usuario();
+        Marca novaMarca = new Marca();
         public Login()
         {
             bool checar = true;
@@ -82,9 +83,31 @@ Olá! O que deseja fazer?
                         checar = true;
                         break;
                     case 4:
-                        
+                        if (Logado)
+                        {
+                            Console.WriteLine("Qual o código da marca você deseja cadastrar?");
+                            int _codigo = int.Parse(Console.ReadLine());
+
+                            Console.WriteLine("Qual marca você quer cadastrar?");
+                            string _nomeMarca = Console.ReadLine();
+
+                            Marca m1 = new Marca(_codigo, _nomeMarca);
+
+                            Console.WriteLine(novaMarca.Cadastrar(m1));
+                        }
+                        else
+                        {
+                            Console.WriteLine("Você precisa estar logado para realizar essa ação");
+                        }
                         break;
                     case 5:
+                    if (Logado)
+                    {
+                        // foreach (var marca in ListaMarcas)
+                        // {
+                            
+                        // }
+                    }
                         break;
                     case 6:
                         break;
