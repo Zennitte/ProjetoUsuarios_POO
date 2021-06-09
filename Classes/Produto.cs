@@ -13,7 +13,7 @@ namespace ProjetoProdutos_POO.Classes
         public Marca Marca { get; set; }
         public Usuario CadastradoPor { get; set; }
         public List<Produto> ListaDeProdutos { get; set; }
-        List<Produto> ListaProdutos = new List<Produto>(); 
+        public List<Produto> ListaProdutos = new List<Produto>(); 
         public Produto()
         {
 
