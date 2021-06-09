@@ -6,13 +6,13 @@ namespace ProjetoProdutos_POO.Classes
 {
     public class Produto : IProduto
     {
-        private int Codigo { get; set; }
-        private string NomeProduto { get; set; }
-        private float Preco { get; set; }
-        private DateTime DataCadastro { get; set; }
-        private Marca Marca { get; set; }
-        private Usuario CadastradoPor { get; set; }
-        private List<Produto> ListaDeProdutos { get; set; }
+        public int Codigo { get; set; }
+        public string NomeProduto { get; set; }
+        public float Preco { get; set; }
+        public DateTime DataCadastro { get; set; }
+        public Marca Marca { get; set; }
+        public Usuario CadastradoPor { get; set; }
+        public List<Produto> ListaDeProdutos { get; set; }
         List<Produto> ListaProdutos = new List<Produto>(); 
         public Produto()
         {
