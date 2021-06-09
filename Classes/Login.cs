@@ -169,6 +169,19 @@ Olá! O que deseja fazer?
                     case 8:
                         if (Logado)
                         {
+                            foreach (var item in novoProduto.ListaProdutos)
+                            {
+                                Console.WriteLine($"Nome: {item.NomeProduto} / Código: {item.Codigo} / Preço: {item.Preco} / Marca {item.Marca.NomeMarca} / Cadastrado Por: {item.CadastradoPor.Nome}");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Você precisa estar logado para realizar essa ação");
+                        }
+                        break;
+                    case 9:
+                        if (Logado)
+                        {
                             Console.WriteLine("Qual produto você quer deletar?");
                             string _nomeProduto = Console.ReadLine();
 
@@ -179,15 +192,6 @@ Olá! O que deseja fazer?
                         else
                         {
                             Console.WriteLine("Você precisa estar logado para realizar essa ação");
-                        }
-                        break;
-                    case 9:
-                        if (Logado)
-                        {
-                            foreach (var item in novoProduto.ListaProdutos)
-                            {
-                                Console.WriteLine($"Nome: {item.NomeProduto} / Código: {item.Codigo} / Preço: {item.Preco} / Marca {item.Marca} / Cadastrado Por: {item.CadastradoPor}");
-                            }
                         }
                         break;
                     default:
